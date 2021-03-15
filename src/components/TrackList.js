@@ -4,25 +4,25 @@ import _ from 'lodash';
 import music from '../images/music.jpeg';
 
 
-const AlbumsList = ({ albums }) => {
+const TrackList = ({ track }) => {
   return (
     <React.Fragment>
-      {Object.keys(albums).length > 0 && (
+      {Object.keys(track).length > 0 && (
         <div className="albums">
-          {albums.items.map((album, index) => {
+          {track.items.map((track, index) => {
             return (
               <React.Fragment key={index}>
                 <Card style={{ width: '18rem' }}>
                   <a
                     target="_blank"
-                    href={album.external_urls.spotify}
+                    href={track.external_urls.spotify}
                     rel="noopener noreferrer"
                     className="card-image-link"
                   >
-                    {!_.isEmpty(album.images) ? (
+                    {!_.isEmpty(track.images) ? (
                       <Card.Img
                         variant="top"
-                        src={album.images[0].url}
+                        src={track.images[0].url}
                         alt=""
                       />
                     ) : (
@@ -30,10 +30,10 @@ const AlbumsList = ({ albums }) => {
                     )}
                   </a>
                   <Card.Body>
-                    <Card.Title>{album.name}</Card.Title>
+                    <Card.Title>{track.name}</Card.Title>
                     <Card.Text>
                       <small>
-                        {album.artists.map((artist) => artist.name).join(', ')}
+                        {track.artists.map((artist) => artist.name).join(', ')}
                       </small>
                     </Card.Text>
 
@@ -51,4 +51,4 @@ const AlbumsList = ({ albums }) => {
   );
 };
 
-export default AlbumsList;
+export default TrackList;

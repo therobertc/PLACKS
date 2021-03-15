@@ -5,6 +5,7 @@ import { Redirect } from 'react-router-dom';
 import AlbumsList from './AlbumsList';
 import ArtistsList from './ArtistsList';
 import PlayList from './PlayList';
+import TrackList from './TrackList';
 
 const SearchResult = (props) => {
   const {
@@ -14,7 +15,7 @@ const SearchResult = (props) => {
     setCategory,
     selectedCategory
   } = props;
-  const { albums, artists, playlist } = result;
+  const { albums, track, artists, playlist } = result;
 
   if (!isValidSession()) {
     return (
@@ -32,6 +33,7 @@ const SearchResult = (props) => {
   return (
     <React.Fragment>
       <div className="search-buttons">
+        
         {!_.isEmpty(albums.items) && (
           <button
             className={`${
@@ -42,6 +44,17 @@ const SearchResult = (props) => {
             Albums
           </button>
         )}
+
+         {/* {!_.isEmpty(track.items) && (
+          <button
+            className={`${
+              selectedCategory === 'track' ? 'btn active' : 'btn'
+            }`}
+            onClick={() => setCategory('track')}
+          >
+            Songs
+          </button>
+        )} */}
         {!_.isEmpty(artists.items) && (
           <button
             className={`${
@@ -62,6 +75,9 @@ const SearchResult = (props) => {
             PlayLists
           </button>
         )}
+      </div>
+       <div className={`${selectedCategory === 'tracks' ? '' : 'hide'}`}>
+        {track && <TrackList track={track} />}
       </div>
       <div className={`${selectedCategory === 'albums' ? '' : 'hide'}`}>
         {albums && <AlbumsList albums={albums} />}

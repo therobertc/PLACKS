@@ -3,10 +3,13 @@ import thunk from 'redux-thunk';
 import albumsReducer from '../reducers/albums';
 import artistsReducer from '../reducers/artists';
 import playlistReducer from '../reducers/playlist';
+import tracksReducer from '../reducers/tracks';
+
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
   combineReducers({
+    tracks: tracksReducer,
     albums: albumsReducer,
     artists: artistsReducer,
     playlist: playlistReducer
